@@ -26,14 +26,27 @@
       font-size: 1rem;
       letter-spacing: 1px;
     }
+    #startButton {
+      background-color: white;
+      color: black;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 12px;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
-  <!-- Audio Player -->
-  <audio id="bg-audio" autoplay loop>
+  <!-- Audio Element -->
+  <audio id="bg-audio" loop>
     <source src="DELTARUNE-IS-WAITING.ogg" type="audio/ogg">
     Your browser does not support the audio element.
   </audio>
+
+  <!-- Start Button -->
+  <button id="startButton">DELTARUNE TOMORROW</button>
 
   <h1>DELTARUNE CH. 3-4 RELEASE IN:</h1>
   <div id="countdown">Loading...</div>
@@ -61,6 +74,18 @@
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
+
+    // Button click to play music
+    const audio = document.getElementById('bg-audio');
+    const startButton = document.getElementById('startButton');
+
+    startButton.addEventListener('click', () => {
+      audio.play().then(() => {
+        startButton.style.display = 'none';
+      }).catch(err => {
+        console.error("Audio failed to play:", err);
+      });
+    });
   </script>
 </body>
 </html>
