@@ -26,23 +26,37 @@
       font-size: 1rem;
       letter-spacing: 1px;
     }
+    #playButton {
+      background-color: #4CAF50; /* Green */
+      color: white;
+      font-size: 16px;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <!-- Audio Player -->
-  <audio id="bg-audio" autoplay loop>
-    <source src="DELTARUNEISWAITING.mp3" type="audio/mpeg">
+  <audio id="bg-audio" loop>
+    <source src="DELTARUNE-IS-WAITING.ogg" type="audio/ogg">
     Your browser does not support the audio element.
   </audio>
+
+  <!-- Play Button -->
+  <button id="playButton">Play Audio</button>
 
   <h1>DELTARUNE CH. 3-4 RELEASE IN:</h1>
   <div id="countdown">Loading...</div>
 
   <script>
-    // Check if the audio is being loaded correctly
+    // Play the audio manually when the button is clicked
+    const playButton = document.getElementById('playButton');
     const audio = document.getElementById('bg-audio');
-    audio.addEventListener('error', function() {
-      console.error('There was an issue loading the audio file.');
+
+    playButton.addEventListener('click', function() {
+      audio.play();
+      playButton.style.display = 'none'; // Hide play button after click
     });
 
     const countdown = document.getElementById('countdown');
