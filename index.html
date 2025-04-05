@@ -39,9 +39,14 @@
   <div id="countdown">Loading...</div>
 
   <script>
-    // Unmute the audio after user interaction
+    // Add listener for debugging purpose
     document.body.addEventListener('click', function () {
       const audio = document.getElementById('bg-audio');
+      if (audio.paused) {
+        console.log('Audio is paused, trying to unmute');
+      } else {
+        console.log('Audio is already playing');
+      }
       audio.muted = false; // Unmute after user clicks
     });
 
