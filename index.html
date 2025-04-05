@@ -39,6 +39,12 @@
   <div id="countdown">Loading...</div>
 
   <script>
+    // Check if the audio is being loaded correctly
+    const audio = document.getElementById('bg-audio');
+    audio.addEventListener('error', function() {
+      console.error('There was an issue loading the audio file.');
+    });
+
     const countdown = document.getElementById('countdown');
     const releaseDate = new Date('June 4, 2025 21:00:00 GMT-0700').getTime();
 
