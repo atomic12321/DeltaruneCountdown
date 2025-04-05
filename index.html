@@ -30,7 +30,7 @@
 </head>
 <body>
   <!-- Audio Player -->
-  <audio autoplay loop>
+  <audio id="bg-audio" autoplay loop muted>
     <source src="DELTARUNEISWAITING.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
@@ -39,6 +39,12 @@
   <div id="countdown">Loading...</div>
 
   <script>
+    // Unmute the audio after user interaction
+    document.body.addEventListener('click', function () {
+      const audio = document.getElementById('bg-audio');
+      audio.muted = false; // Unmute after user clicks
+    });
+
     const countdown = document.getElementById('countdown');
     const releaseDate = new Date('June 4, 2025 21:00:00 GMT-0700').getTime();
 
