@@ -26,18 +26,6 @@
       font-size: 1rem;
       letter-spacing: 1px;
     }
-    #playButton {
-      background-color: #4CAF50; /* Green */
-      color: white;
-      font-size: 16px;
-      border: none;
-      padding: 15px 30px;
-      margin-top: 20px;
-      cursor: pointer;
-    }
-    #playButton:hover {
-      background-color: #45a049;
-    }
   </style>
 </head>
 <body>
@@ -47,20 +35,10 @@
     Your browser does not support the audio element.
   </audio>
 
-  <!-- Play Button -->
-  <button id="playButton" style="display: none;">Play Audio</button>
-
   <h1>DELTARUNE CH. 3-4 RELEASE IN:</h1>
   <div id="countdown">Loading...</div>
 
   <script>
-    // Automatically play audio when the page loads
-    const audio = document.getElementById('bg-audio');
-    const playButton = document.getElementById('playButton');
-    
-    // Hide the button immediately after loading the page
-    playButton.style.display = 'none'; 
-
     const countdown = document.getElementById('countdown');
     const releaseDate = new Date('June 4, 2025 21:00:00 GMT-0700').getTime();
 
