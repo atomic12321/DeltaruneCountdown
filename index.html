@@ -124,7 +124,9 @@
       const audio = document.getElementById("bg-audio");
       audio.play(); // Play music when the button is clicked
       document.getElementById("spamton").style.display = "block"; // Show Spamton sprite
-      document.getElementById("spamton").style.left = "0"; // Animate Spamton to slide in
+      setTimeout(function() {
+        document.getElementById("spamton").style.left = "0"; // Slide Spamton in after 100ms
+      }, 100); // Delay the animation start slightly to ensure display is triggered first
       document.getElementById("delButton").style.display = "none"; // Hide the button
     };
 
