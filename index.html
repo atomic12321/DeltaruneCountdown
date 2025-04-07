@@ -29,21 +29,13 @@
 
     /* Spamton sprite styling */
     #spamton {
-      width: 32px; /* Width of one frame */
-      height: 32px; /* Height of one frame */
-      background-image: url('https://www.spriters-resource.com/pc_computer/deltarune/sheet/162176/');
-      background-position: 0 0; /* Position to the first frame */
-      animation: walkAnimation 1s steps(4) infinite; /* Adjust steps based on the number of frames */
+      width: 64px; /* Adjust based on the size of the sprite */
+      height: 64px; /* Adjust based on the size of the sprite */
+      background-image: url('https://atomic12321.github.io/DeltaruneCountdown/1633886168688976.gif'); /* Updated to your GIF path */
+      background-size: cover;
+      background-position: center;
       margin-top: 20px;
       display: none; /* Hide Spamton initially */
-    }
-
-    @keyframes walkAnimation {
-      0% { background-position: 0 0; }
-      25% { background-position: -32px 0; }
-      50% { background-position: -64px 0; }
-      75% { background-position: -96px 0; }
-      100% { background-position: 0 0; }
     }
 
     /* Button styling */
