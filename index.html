@@ -26,39 +26,45 @@
       font-size: 1rem;
       letter-spacing: 1px;
     }
-    #startButton {
-      background-color: white;
-      color: black;
-      font-family: 'Press Start 2P', cursive;
-      font-size: 14px;
-      padding: 15px 25px;
-      border: none;
-      cursor: pointer;
+
+    /* Spamton sprite styling */
+    #spamton {
+      width: 32px; /* Width of one frame */
+      height: 32px; /* Height of one frame */
+      background-image: url('https://www.spriters-resource.com/pc_computer/deltarune/sheet/162176/');
+      background-position: 0 0; /* Position to the first frame */
+      animation: walkAnimation 1s steps(4) infinite; /* Adjust steps based on the number of frames */
       margin-top: 20px;
-      border-radius: 8px;
-      transition: background-color 0.3s ease;
     }
-    #startButton:hover {
-      background-color: #e0e0e0;
+
+    @keyframes walkAnimation {
+      0% { background-position: 0 0; }
+      25% { background-position: -32px 0; }
+      50% { background-position: -64px 0; }
+      75% { background-position: -96px 0; }
+      100% { background-position: 0 0; }
     }
   </style>
 </head>
 <body>
-  <!-- Audio Element -->
-  <audio id="bg-audio" loop>
-    <source src="DELTARUNE-IS-WAITING.ogg" type="audio/ogg">
+  <!-- Audio Player -->
+  <audio id="bg-audio" autoplay loop>
+    <source src="https://atomic12321.github.io/DeltaruneCountdown/DELTARUNE-IS-WAITING.ogg" type="audio/ogg">
     Your browser does not support the audio element.
   </audio>
-
-  <!-- Start Button -->
-  <button id="startButton">DELTARUNE TOMORROW</button>
 
   <h1>DELTARUNE CH. 3-4 RELEASE IN:</h1>
   <div id="countdown">Loading...</div>
 
+  <!-- Button to trigger Spamton -->
+  <button id="delButton">DELTARUNE TOMORROW</button>
+
+  <!-- Spamton walking sprite -->
+  <div id="spamton" style="display: none;"></div>
+
   <script>
     const countdown = document.getElementById('countdown');
-    const releaseDate = new Date('June 4, 2025 21:00:00 GMT-0700').getTime();
+    const releaseDate = new Date('June 5, 2025 00:00:00 GMT-0700').getTime();
 
     function updateCountdown() {
       const now = new Date().getTime();
@@ -80,20 +86,18 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Button click to play music (mobile-friendly)
-    const audio = document.getElementById('bg-audio');
-    const startButton = document.getElementById('startButton');
+    // Button click event to show Spamton
+    document.getElementById("delButton").onclick = function() {
+      const audio = document.getElementById("bg-audio");
+      audio.play(); // Play music when the button is clicked
+      document.getElementById("spamton").style.display = "block"; // Show Spamton sprite
+      document.getElementById("delButton").style.display = "none"; // Hide the button
+    };
 
-    function startMusic() {
-      audio.play().then(() => {
-        startButton.style.display = 'none';
-      }).catch(err => {
-        console.error("Audio failed to play:", err);
-      });
-    }
-
-    startButton.addEventListener('click', startMusic);
-    startButton.addEventListener('touchstart', startMusic);
+    // Click on Spamton to display a message
+    document.getElementById("spamton").onclick = function() {
+      alert("BIG RELEASE TOMORROW");
+    };
   </script>
 </body>
 </html>
