@@ -29,13 +29,16 @@
 
     /* Spamton sprite styling */
     #spamton {
-      width: 64px; /* Adjust based on the size of the sprite */
-      height: 64px; /* Adjust based on the size of the sprite */
-      background-image: url('https://atomic12321.github.io/DeltaruneCountdown/1633886168688976.gif'); /* Updated to your GIF path */
+      width: 64px;
+      height: 64px;
+      background-image: url('https://atomic12321.github.io/DeltaruneCountdown/1633886168688976.gif');
       background-size: cover;
       background-position: center;
       margin-top: 20px;
-      display: none; /* Hide Spamton initially */
+      display: none; /* Initially hidden */
+      position: relative;
+      left: -100%; /* Start off-screen */
+      transition: left 1s ease; /* Slide in transition */
     }
 
     /* Button styling */
@@ -54,6 +57,23 @@
     #delButton:hover {
       background-color: #444;
     }
+
+    /* Custom text box for messages */
+    #messageBox {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: black;
+      color: white;
+      font-family: 'Press Start 2P', cursive;
+      padding: 10px;
+      display: none;
+      border: 2px solid white;
+      border-radius: 5px;
+      max-width: 300px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -71,6 +91,9 @@
 
   <!-- Spamton walking sprite -->
   <div id="spamton"></div>
+
+  <!-- Custom message box -->
+  <div id="messageBox">BIG RELEASE TOMORROW!</div>
 
   <script>
     const countdown = document.getElementById('countdown');
@@ -96,17 +119,22 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Button click event to show Spamton
+    // Button click event to show Spamton and play music
     document.getElementById("delButton").onclick = function() {
       const audio = document.getElementById("bg-audio");
       audio.play(); // Play music when the button is clicked
       document.getElementById("spamton").style.display = "block"; // Show Spamton sprite
+      document.getElementById("spamton").style.left = "0"; // Animate Spamton to slide in
       document.getElementById("delButton").style.display = "none"; // Hide the button
     };
 
-    // Click on Spamton to display a message
+    // Click on Spamton to display a custom message
     document.getElementById("spamton").onclick = function() {
-      alert("BIG RELEASE TOMORROW");
+      const messageBox = document.getElementById("messageBox");
+      messageBox.style.display = "block"; // Show the message box
+      setTimeout(function() {
+        messageBox.style.display = "none"; // Hide the message after 3 seconds
+      }, 3000);
     };
   </script>
 </body>
