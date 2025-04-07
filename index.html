@@ -16,88 +16,80 @@
       justify-content: center;
       height: 100vh;
       margin: 0;
-      text-align: center;
+      overflow: hidden;
     }
+
     h1 {
       font-size: 1.5rem;
       margin-bottom: 2rem;
+      text-align: center;
     }
+
     #countdown {
       font-size: 1rem;
       letter-spacing: 1px;
+      margin-bottom: 2rem;
     }
 
-    /* Spamton sprite styling */
     #spamton {
-      width: 64px;
-      height: 64px;
-      background-image: url('https://atomic12321.github.io/DeltaruneCountdown/1633886168688976.gif');
-      background-size: cover;
-      background-position: center;
-      margin-top: 20px;
-      display: none; /* Initially hidden */
-      position: relative;
-      left: -100%; /* Start off-screen */
-      transition: left 1s ease; /* Slide in transition */
+      position: absolute;
+      bottom: 50px;
+      left: -200px;
+      width: 100px;
+      transition: left 1s ease-in-out;
+      image-rendering: pixelated;
     }
 
-    /* Button styling */
-    #delButton {
-      font-family: 'Press Start 2P', cursive;
-      padding: 10px 20px;
-      font-size: 1rem;
-      background-color: #222;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-
-    #delButton:hover {
-      background-color: #444;
-    }
-
-    /* Custom text box for messages */
-    #messageBox {
-      position: fixed;
+    #textbox {
+      position: absolute;
       bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 130px;
       background-color: black;
       color: white;
-      font-family: 'Press Start 2P', cursive;
+      border: 3px solid white;
       padding: 10px;
+      font-size: 10px;
       display: none;
-      border: 2px solid white;
-      border-radius: 5px;
       max-width: 300px;
-      text-align: center;
+      font-family: 'Press Start 2P', cursive;
+    }
+
+    #tomorrowBtn {
+      background-color: white;
+      color: black;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 10px;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    #tomorrowBtn:hover {
+      background-color: gray;
     }
   </style>
 </head>
 <body>
-  <!-- Audio Player -->
-  <audio id="bg-audio" autoplay loop>
-    <source src="https://atomic12321.github.io/DeltaruneCountdown/DELTARUNE-IS-WAITING.ogg" type="audio/ogg">
+
+  <!-- Audio -->
+  <audio id="bg-audio" loop>
+    <source src="DELTARUNE-IS-WAITING.ogg" type="audio/ogg">
     Your browser does not support the audio element.
   </audio>
 
   <h1>DELTARUNE CH. 3-4 RELEASE IN:</h1>
   <div id="countdown">Loading...</div>
 
-  <!-- Button to trigger Spamton -->
-  <button id="delButton">DELTARUNE TOMORROW</button>
+  <button id="tomorrowBtn">DELTARUNE TOMORROW</button>
 
-  <!-- Spamton walking sprite -->
-  <div id="spamton"></div>
-
-  <!-- Custom message box -->
-  <div id="messageBox">BIG RELEASE TOMORROW!</div>
+  <img src="1633886168688976.gif" id="spamton" alt="Spamton">
+  <div id="textbox">[BIG RELEASE TOMORROW]</div>
 
   <script>
     const countdown = document.getElementById('countdown');
-    const releaseDate = new Date('June 5, 2025 00:00:00 GMT-0700').getTime(); // Fixed date and time
+    const releaseDate = new Date('June 5, 2025 00:00:00 GMT').getTime();
 
     function updateCountdown() {
       const now = new Date().getTime();
@@ -119,25 +111,21 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Button click event to show Spamton and play music
-    document.getElementById("delButton").onclick = function() {
-      const audio = document.getElementById("bg-audio");
-      audio.play(); // Play music when the button is clicked
-      document.getElementById("spamton").style.display = "block"; // Show Spamton sprite
-      setTimeout(function() {
-        document.getElementById("spamton").style.left = "0"; // Slide Spamton in after 100ms
-      }, 100); // Delay the animation start slightly to ensure display is triggered first
-      document.getElementById("delButton").style.display = "none"; // Hide the button
-    };
+    const btn = document.getElementById('tomorrowBtn');
+    const spamton = document.getElementById('spamton');
+    const textbox = document.getElementById('textbox');
+    const audio = document.getElementById('bg-audio');
 
-    // Click on Spamton to display a custom message
-    document.getElementById("spamton").onclick = function() {
-      const messageBox = document.getElementById("messageBox");
-      messageBox.style.display = "block"; // Show the message box
-      setTimeout(function() {
-        messageBox.style.display = "none"; // Hide the message after 3 seconds
-      }, 3000);
-    };
+    btn.addEventListener('click', () => {
+      // Start audio (for mobile)
+      audio.play().catch(() => {});
+      // Move Spamton in
+      spamton.style.left = '50px';
+      // Show textbox
+      textbox.style.display = 'block';
+      // Remove button
+      btn.style.display = 'none';
+    });
   </script>
 </body>
 </html>
