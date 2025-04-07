@@ -35,6 +35,7 @@
       background-position: 0 0; /* Position to the first frame */
       animation: walkAnimation 1s steps(4) infinite; /* Adjust steps based on the number of frames */
       margin-top: 20px;
+      display: none; /* Hide Spamton initially */
     }
 
     @keyframes walkAnimation {
@@ -43,6 +44,23 @@
       50% { background-position: -64px 0; }
       75% { background-position: -96px 0; }
       100% { background-position: 0 0; }
+    }
+
+    /* Button styling */
+    #delButton {
+      font-family: 'Press Start 2P', cursive;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #222;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    #delButton:hover {
+      background-color: #444;
     }
   </style>
 </head>
@@ -60,7 +78,7 @@
   <button id="delButton">DELTARUNE TOMORROW</button>
 
   <!-- Spamton walking sprite -->
-  <div id="spamton" style="display: none;"></div>
+  <div id="spamton"></div>
 
   <script>
     const countdown = document.getElementById('countdown');
