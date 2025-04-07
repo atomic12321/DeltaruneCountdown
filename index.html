@@ -89,7 +89,8 @@
 
   <script>
     const countdown = document.getElementById('countdown');
-    const releaseDate = new Date('June 5, 2025 00:00:00 GMT').getTime();
+    // Subtracted 5 hours from midnight GMT
+    const releaseDate = new Date('June 4, 2025 19:00:00 GMT').getTime();
 
     function updateCountdown() {
       const now = new Date().getTime();
@@ -117,13 +118,9 @@
     const audio = document.getElementById('bg-audio');
 
     btn.addEventListener('click', () => {
-      // Start audio (for mobile)
       audio.play().catch(() => {});
-      // Move Spamton in
       spamton.style.left = '50px';
-      // Show textbox
       textbox.style.display = 'block';
-      // Remove button
       btn.style.display = 'none';
     });
   </script>
