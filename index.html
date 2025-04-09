@@ -21,6 +21,10 @@
       overflow: hidden;
       text-align: center;
       user-select: none;
+      min-width: 300px;
+      max-width: 300px;
+      min-height: 200px;
+      max-height: 200px;
     }
 
     #countdown {
@@ -76,6 +80,7 @@
   <div id="speechBubble">[BIG RELEASE TOMORROW]</div>
 
   <script>
+    // Countdown script
     const countdown = document.getElementById('countdown');
     const releaseDate = new Date('June 5, 2025 04:00:00 GMT');
 
@@ -99,6 +104,7 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
+    // Play button & spamton interaction
     const audio = document.getElementById('bg-audio');
     const playButton = document.getElementById('playButton');
     const spamton = document.getElementById('spamton');
@@ -112,6 +118,19 @@
 
     spamton.addEventListener('click', () => {
       speechBubble.style.display = 'block';
+    });
+
+    // Window resize prevention
+    window.addEventListener('resize', () => {
+      const minWidth = 300;
+      const minHeight = 200;
+      const maxWidth = 300;
+      const maxHeight = 200;
+
+      if (window.innerWidth < minWidth || window.innerHeight < minHeight ||
+          window.innerWidth > maxWidth || window.innerHeight > maxHeight) {
+        window.resizeTo(maxWidth, maxHeight);
+      }
     });
   </script>
 </body>
