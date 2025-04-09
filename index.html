@@ -2,66 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=300, height=200, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=no" />
   <title>DELTARUNE Countdown</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
-    body {
+    html, body {
+      margin: 0;
+      padding: 0;
       background-color: black;
       color: white;
       font-family: 'Press Start 2P', cursive;
+      width: 100vw;
+      height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      margin: 0;
-      text-align: center;
+      flex-direction: column;
       overflow: hidden;
-    }
-
-    h1 {
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
+      text-align: center;
+      user-select: none;
     }
 
     #countdown {
-      font-size: 1rem;
-      letter-spacing: 1px;
-      margin-bottom: 1rem;
+      font-size: 0.7rem;
+      margin: 0.5rem;
     }
 
     #playButton {
       font-family: 'Press Start 2P', cursive;
+      font-size: 0.5rem;
       background: white;
       color: black;
       border: none;
-      padding: 10px 20px;
+      padding: 4px 8px;
       cursor: pointer;
-      margin-top: 1rem;
+      margin-bottom: 0.5rem;
     }
 
     #spamton {
       position: absolute;
-      left: -150px;
-      bottom: 30px;
-      width: 100px;
+      left: -120px;
+      bottom: 10px;
+      width: 70px;
       transition: left 1s ease-out;
       cursor: pointer;
     }
 
     #speechBubble {
       position: absolute;
-      bottom: 130px;
-      left: 30px;
+      bottom: 90px;
+      left: 20px;
       background: black;
       color: white;
       border: 2px solid white;
-      padding: 10px;
-      font-size: 0.5rem;
+      padding: 6px;
+      font-size: 0.35rem;
       font-family: 'Press Start 2P', cursive;
       display: none;
-      width: 200px;
+      width: 160px;
     }
   </style>
 </head>
@@ -71,17 +69,15 @@
     Your browser does not support the audio element.
   </audio>
 
-  <h1>DELTARUNE CH. 3-4 RELEASE IN:</h1>
   <div id="countdown">Loading...</div>
   <button id="playButton">DELTARUNE TOMORROW</button>
-  
+
   <img id="spamton" src="1633886168688976.gif" alt="Spamton">
   <div id="speechBubble">[BIG RELEASE TOMORROW]</div>
 
   <script>
     const countdown = document.getElementById('countdown');
     const releaseDate = new Date('June 5, 2025 04:00:00 GMT');
-
 
     function updateCountdown() {
       const now = new Date().getTime();
@@ -111,9 +107,7 @@
     playButton.addEventListener('click', () => {
       audio.play();
       playButton.style.display = 'none';
-
-      // Slide in Spamton
-      spamton.style.left = '30px';
+      spamton.style.left = '20px';
     });
 
     spamton.addEventListener('click', () => {
